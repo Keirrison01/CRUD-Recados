@@ -9,8 +9,32 @@ if ($_POST) {
     if ($existe) {
         $erro = "Este e-mail já está cadastrado!";
     } else {
-        $user->criar($_POST['nome'], $_POST['email'], $_POST['senha']);
+
+        // -------------------------
+        // PROCESSAR FOTO DE PERFIL
+        // -------------------------
+        $fotoNome = null;
+
+        if (!empty($_FILES['foto']['name'])) {
+
+            $pasta = "../uploads/";
+
+            // cria pasta se não existir
+            if (!is_dir($pasta)) {
+                mkdir($pasta, 0777, true);
+            }
+
+            $ext = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
+            $fotoNome = uniqid() . "." . $ext;
+
+            move_uploaded_file($_FILES['foto']['tmp_name'], $pasta . $fotoNome);
+        }
+
+        // Agora criar usuário com foto
+        $user->criar($_POST['nome'], $_POST['email'], $_POST['senha'], $fotoNome);
+
         header("Location: login.php");
+        exit;
     }
 }
 
@@ -23,7 +47,7 @@ include "../templates/header.php";
     <p style="color:red"><?= $erro ?></p>
 <?php endif; ?>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     Nome:<br>
     <input type="text" name="nome" required><br><br>
 
@@ -32,6 +56,9 @@ include "../templates/header.php";
 
     Senha:<br>
     <input type="password" name="senha" required><br><br>
+
+    Foto de Perfil:<br>
+    <input type="file" name="foto" accept="image/*"><br><br>
 
     <button type="submit">Criar Conta</button>
 </form>

@@ -26,8 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         session_regenerate_id(true);
 
+        // 🔹 SALVA TUDO NA SESSÃO (INCLUINDO A FOTO!)
         $_SESSION['usuario_id'] = $user['id'];
         $_SESSION['usuario_nome'] = $user['nome'];
+        $_SESSION['usuario_foto'] = $user['foto'] ?? null;
 
         header("Location: index.php");
         exit;
@@ -37,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 render_form:
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">

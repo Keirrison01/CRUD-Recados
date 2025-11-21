@@ -18,12 +18,14 @@ class Recado {
     }
 
     // 🔹 Criar recado AMARRADO ao usuário
-    public function criar($titulo, $mensagem, $usuario_id) {
-        $sql = "INSERT INTO recados (titulo, mensagem, usuario_id) VALUES (:titulo, :mensagem, :usuario_id)";
+    public function criar($titulo, $descricao, $usuario_id) {
+        $sql = "INSERT INTO recados (titulo, descricao, usuario_id)
+                VALUES (:titulo, :descricao, :usuario_id)";
+        
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([
+        return $stmt->execute([
             ":titulo" => $titulo,
-            ":mensagem" => $mensagem,
+            ":descricao" => $descricao,
             ":usuario_id" => $usuario_id
         ]);
     }
@@ -40,20 +42,21 @@ class Recado {
     }
 
     // 🔹 Editar recado SOMENTE do usuário
-    public function editar($id, $usuario_id, $titulo, $mensagem) {
+    public function editar($id, $usuario_id, $titulo, $descricao) {
         $sql = "UPDATE recados 
-                SET titulo = :titulo, mensagem = :mensagem 
+                SET titulo = :titulo, descricao = :descricao 
                 WHERE id = :id AND usuario_id = :usuario_id";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ":titulo" => $titulo,
-            ":mensagem" => $mensagem,
+            ":descricao" => $descricao,
             ":id" => $id,
             ":usuario_id" => $usuario_id
         ]);
     }
 
+    // 🔹 Excluir recado
     public function excluir($id, $usuario_id) {
         $sql = "DELETE FROM recados WHERE id = :id AND usuario_id = :usuario_id";
         $stmt = $this->pdo->prepare($sql);

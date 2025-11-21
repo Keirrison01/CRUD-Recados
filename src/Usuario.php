@@ -9,18 +9,23 @@ class Usuario {
         $this->pdo = $db->pdo;
     }
 
-    public function criar($nome, $email, $senha) {
-        $sql = "INSERT INTO usuarios (nome, email, senha) 
-                VALUES (:nome, :email, :senha)";
+    /**
+     * Cria um novo usuário.
+     * $fotoNome = nome do arquivo salvo em /uploads (pode ser null).
+     */
+    public function criar($nome, $email, $senha, $fotoNome = null) {
+        $sql = "INSERT INTO usuarios (nome, email, senha, foto)
+                VALUES (:nome, :email, :senha, :foto)";
 
         $stmt = $this->pdo->prepare($sql);
-        
+
         $senhaCript = password_hash($senha, PASSWORD_DEFAULT);
 
         $stmt->execute([
             ":nome" => $nome,
             ":email" => $email,
-            ":senha" => $senhaCript
+            ":senha" => $senhaCript,
+            ":foto" => $fotoNome
         ]);
     }
 
@@ -35,7 +40,7 @@ class Usuario {
         $usuario = $this->buscarPorEmail($email);
 
         if ($usuario && password_verify($senha, $usuario['senha'])) {
-            return $usuario; // <<< retorna o usuário completo
+            return $usuario; // retorna o usuário completo
         }
 
         return false;

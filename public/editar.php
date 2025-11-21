@@ -21,7 +21,7 @@ if ($_POST) {
         $_GET['id'],
         $_SESSION['usuario_id'],
         $_POST['titulo'],
-        $_POST['mensagem']
+        $_POST['descricao'] // CORRIGIDO
     );
 
     header("Location: index.php");
@@ -36,7 +36,7 @@ if ($_POST) {
     <input type="text" name="titulo" value="<?= htmlspecialchars($dados['titulo']) ?>" required><br><br>
 
     Mensagem:<br>
-    <textarea name="mensagem" required><?= htmlspecialchars($dados['mensagem']) ?></textarea><br><br>
+    <textarea name="descricao" required><?= htmlspecialchars($dados['descricao']) ?></textarea><br><br> <!-- CORRIGIDO -->
 
     <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
