@@ -48,7 +48,7 @@ Apache (via XAMPP/WAMP/MAMP)
 
 📚 Como instalar no servidor local
 1️⃣ Clonar o protetor
-git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
+git clone https://github.com/Keirrison01/CRUD-Recados.git
 
 
 Ou baixe como ZIP e extraia.
