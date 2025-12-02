@@ -8,7 +8,7 @@ Com uma interface simples, limpa e funcional, o Mural foi pensado para ser leve,
 
 Cadastro e login simples
 
-Senhas protegidas (criptografadas — caso já implementado no seu projeto )
+Senhas protegidas (criptografadas)
 
 Sistema básico de autenticação
 
@@ -41,8 +41,6 @@ Sistema leve e de fácil manutenção
 PHP procedural
 
 MySQL
-
-DOP (se você estiver usando)
 
 HTML, CSS, JavaScript
 
