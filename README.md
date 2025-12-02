@@ -6,43 +6,43 @@ Com uma interface simples, limpa e funcional, o Mural foi pensado para ser leve,
 🎯 Recursos principais
 🧑‍💻 Área do Usuário
 
-Cadastro e login simples
+Cadastro e login simples.
 
-Senhas protegidas (criptografadas)
+Senhas protegidas (criptografadas).
 
-Sistema básico de autenticação
+Sistema básico de autenticação.
 
 🖼️ Publicação no Mural
 
-Cada usuário pode fazer publicações
+Cada usuário pode fazer publicações.
 
-Upload de imagens (armazenadas na pasta uploads/ )
+Upload de imagens (armazenadas na pasta uploads/ ).
 
-Publicações organizadas por data e hora
+Publicações organizadas por data e hora.
 
-Exibição automática no mural
+Exibição automática no mural.
 
 👤 Perfil do Usuário
 
-Nome do usuário exibido no cabeçalho
+Nome do usuário exibido no cabeçalho.
 
-Foto de perfil compartilhada a partir de pasta uploads
+Foto de perfil compartilhada a partir de pasta uploads.
 
-Opção de editar informações (se houver no seu projeto)
+Opção de editar informações.
 
 📊 Organização e Estrutura
 
-Massas separadas ( templates/, uploads/, etc.)
+Massas separadas ( templates/, uploads/, etc.).
 
-Sistema leve e de fácil manutenção
+Sistema leve e de fácil manutenção.
 
 🛠️ Tecnologias Utilizadas
 
-PHP procedural
+PHP procedural.
 
-MySQL
+MySQL.
 
-HTML, CSS, JavaScript
+HTML, CSS, JavaScript.
 
 Apache (via XAMPP/WAMP/MAMP)
 
@@ -57,11 +57,11 @@ Ou baixe como ZIP e extraia.
 
 Você precisa ter um servidor local, como:
 
-XAMPP
+XAMPP.
 
-WAMP
+WAMP.
 
-MAMP
+MAMP.
 
 Que inclui: Apache, PHP e MySQL
 
