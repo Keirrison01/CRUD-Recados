@@ -2,7 +2,7 @@
 
 class Database {
     private $host = "127.0.0.1";
-    private $db = "mural";
+    private $db = "mural2";
     private $user = "root";
     private $pass = "";
     public $pdo;

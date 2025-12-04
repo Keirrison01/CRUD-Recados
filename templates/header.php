@@ -3,9 +3,18 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+/*
+  Se o usuário NÃO estiver logado, 
+  o header é interrompido aqui e o menu NÃO aparece
+*/
+if (!isset($_SESSION['usuario_id'])) {
+    return;
+}
+
 // base do projeto
 $base = "/mural/";
 
+// foto do usuário
 $foto = $_SESSION['usuario_foto'] ?? null;
 
 // caminho absoluto para a foto
@@ -16,7 +25,6 @@ $fotoPerfil = $foto
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <title>Mural de Recados</title>
@@ -61,16 +69,14 @@ $fotoPerfil = $foto
             text-decoration: underline;
         }
     </style>
-
 </head>
 
 <body>
-
 <nav>
     <div class="menu">
-        <a href="<?= $base ?>pages/index.php">🏠 Início</a>
-        <a href="<?= $base ?>pages/criar.php">➕ Criar Recado</a>
-        <a href="<?= $base ?>pages/logout.php">🚪 Sair</a>
+        <a href="<?= $base ?>public/index.php">🏠 Início</a>
+        <a href="<?= $base ?>public/criar.php">➕ Criar Recado</a>
+        <a href="<?= $base ?>public/logout.php">🚪 Sair</a>
     </div>
 
     <div class="user-box text-white">
@@ -78,5 +84,3 @@ $fotoPerfil = $foto
         <img src="<?= $fotoPerfil ?>" alt="Foto de perfil">
     </div>
 </nav>
-
-<div class="container mt-4">

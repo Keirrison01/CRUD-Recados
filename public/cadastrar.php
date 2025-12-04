@@ -10,16 +10,10 @@ if ($_POST) {
         $erro = "Este e-mail já está cadastrado!";
     } else {
 
-        // -------------------------
-        // PROCESSAR FOTO DE PERFIL
-        // -------------------------
         $fotoNome = null;
 
         if (!empty($_FILES['foto']['name'])) {
-
             $pasta = "../uploads/";
-
-            // cria pasta se não existir
             if (!is_dir($pasta)) {
                 mkdir($pasta, 0777, true);
             }
@@ -30,7 +24,6 @@ if ($_POST) {
             move_uploaded_file($_FILES['foto']['tmp_name'], $pasta . $fotoNome);
         }
 
-        // Agora criar usuário com foto
         $user->criar($_POST['nome'], $_POST['email'], $_POST['senha'], $fotoNome);
 
         header("Location: login.php");
@@ -41,26 +34,99 @@ if ($_POST) {
 include "../templates/header.php";
 ?>
 
-<h2>Criar Conta</h2>
+<style>
+/* Reset simples */
+* {
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-<?php if (!empty($erro)): ?>
-    <p style="color:red"><?= $erro ?></p>
-<?php endif; ?>
+/* Corpo da página */
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-<form method="POST" enctype="multipart/form-data">
-    Nome:<br>
-    <input type="text" name="nome" required><br><br>
+/* Container do formulário */
+.form-container {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 400px;
+}
 
-    Email:<br>
-    <input type="email" name="email" required><br><br>
+/* Título */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
 
-    Senha:<br>
-    <input type="password" name="senha" required><br><br>
+/* Inputs */
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container input[type="file"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0 20px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
 
-    Foto de Perfil:<br>
-    <input type="file" name="foto" accept="image/*"><br><br>
+.form-container input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+    outline: none;
+}
 
-    <button type="submit">Criar Conta</button>
-</form>
+/* Botão */
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background: #667eea;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-container button:hover {
+    background: #5a67d8;
+}
+
+/* Mensagem de erro */
+.error {
+    color: #e74c3c;
+    text-align: center;
+    margin-bottom: 20px;
+}
+</style>
+
+<div class="form-container">
+    <h2>Criar Conta</h2>
+
+    <?php if (!empty($erro)): ?>
+        <p class="error"><?= $erro ?></p>
+    <?php endif; ?>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="senha" placeholder="Senha" required>
+        <input type="file" name="foto" accept="image/*">
+        <button type="submit">Criar Conta</button>
+    </form>
+</div>
 
 <?php include "../templates/footer.php"; ?>
